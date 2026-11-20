@@ -7,7 +7,7 @@
   <a href="https://pypi.org/project/python-jobspy/"><img src="https://img.shields.io/pypi/pyversions/python-jobspy" alt="Python versions"></a>
   <a href="https://pepy.tech/projects/python-jobspy"><img src="https://static.pepy.tech/badge/python-jobspy/month" alt="Downloads per month"></a>
   <a href="https://github.com/speedyapply/JobSpy/actions/workflows/ci.yml"><img src="https://github.com/speedyapply/JobSpy/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
-  <a href="https://github.com/speedyapply/JobSpy/blob/main/LICENSE"><img src="https://img.shields.io/pypi/l/python-jobspy" alt="License: MIT"></a>
+  <a href="https://github.com/AntonSiMal/JobSpy-GUI/blob/main/LICENSE"><img src="https://img.shields.io/pypi/l/python-jobspy" alt="License: MIT"></a>
   <a href="https://discord.gg/v7WdHnrNcN"><img src="https://img.shields.io/discord/1227411661221269565?label=discord&logo=discord&logoColor=white" alt="Discord"></a>
 </p>
 
@@ -22,41 +22,72 @@
   <a href="https://github.com/AntonSiMal/JobSpy-GUI"><img src="https://github.com/cullenwatson/JobSpy/assets/78247585/ec7ef355-05f6-4fd3-8161-a817e31c5c57" alt="Demostración de JobSpy"></a>
 </p>
 
-## Instalación
+## Requisitos previos
 
-```bash
-pip install -U python-jobspy
+- **Python >= [3.10](https://www.python.org/downloads/)** instalado en tu sistema (en Windows, marca la casilla **"Add python.exe to PATH"** durante la instalación; en Linux asegúrate de tener `python3` y `python3-venv`).
+- **Git** (opcional, si clonas el repositorio desde terminal en lugar de descargar el `.zip`).
+
+## Descarga e instalación rápida (Interfaz Gráfica)
+
+### 1. Descargar el proyecto desde GitHub
+
+Elige una de estas dos formas:
+
+- **Opción A — Clonar con Git (recomendado):**
+  ```bash
+  git clone [https://github.com/AntonSiMal/JobSpy-GUI.git](https://github.com/AntonSiMal/JobSpy-GUI.git)
+  cd JobSpy-GUI
 
 ```
 
-*Se requiere Python versión >= [3.10*](https://www.python.org/downloads/release/python-3100/)
+* **Opción B — Descarga directa en ZIP (sin usar Git):**
+1. Entra a [https://github.com/AntonSiMal/JobSpy-GUI](https://www.google.com/url?sa=E&source=gmail&q=https://github.com/AntonSiMal/JobSpy-GUI).
+2. Haz clic en el botón verde **`<> Code`** y luego en **`Download ZIP`**.
+3. Descomprime el archivo `JobSpy-GUI-main.zip` y abre la carpeta extraída (`JobSpy-GUI-main`).
 
-## Interfaz gráfica y lanzadores (`app.py`, `Linux-run.sh`, `Windows-run.bat`)
 
-Este repositorio incluye una interfaz gráfica interactiva en **Streamlit** (`app.py`) junto con *scripts* de arranque que preparan el entorno virtual, instalan dependencias y lanzan la aplicación:
 
-* **`app.py`**: Interfaz web local para configurar portales, términos de búsqueda, ubicación, antigüedad, tipo de jornada, modo remoto, *proxies*, filtrar resultados, revisar errores/advertencias y descargar los datos en CSV.
-* **`Linux-run.sh`**: *Script* para Linux que verifica `python3`, crea/reutiliza `.venv`, instala o actualiza `python-jobspy`, `streamlit` y `openpyxl`, y ejecuta `app.py`.
-* **`Windows-run.bat`**: *Script* para Windows que localiza Python (`py -3` o `python`), crea/reutiliza `.venv`, instala o actualiza las dependencias y lanza `app.py`.
+> **Nota:** Para que la interfaz funcione correctamente, asegúrate de mantener juntos dentro de la misma carpeta los archivos **`app.py`**, **`Linux-run.sh`** y **`Windows-run.bat`**.
 
-### Ejecución en Linux
+### 2. Instalar dependencias y ejecutar la interfaz
 
+Los *scripts* incluidos crean automáticamente un entorno virtual aislado (`.venv`), instalan las dependencias necesarias (`python-jobspy`, `streamlit` y `openpyxl`) y abren la interfaz en tu navegador:
+
+* **En Linux:**
 ```bash
 chmod +x Linux-run.sh
 ./Linux-run.sh
 
 ```
 
-### Ejecución en Windows
 
-Haz doble clic en `Windows-run.bat` o ejecútalo desde terminal:
-
+* **En Windows:**
+Haz doble clic sobre **`Windows-run.bat`** o ejecútalo desde `cmd` / PowerShell:
 ```bat
 Windows-run.bat
 
 ```
 
-## Uso
+
+
+### Archivos principales de la interfaz
+
+* **`app.py`**: Interfaz web local en Streamlit para elegir portales, palabras clave, ubicación, antigüedad, tipo de jornada, modo remoto, *proxies*, filtrar resultados, revisar errores/advertencias y exportar a CSV.
+* **`Linux-run.sh`**: Instalador y lanzador automático para Linux.
+* **`Windows-run.bat`**: Instalador y lanzador automático para Windows.
+
+---
+
+## Instalación solo como librería Python (sin interfaz gráfica)
+
+Si únicamente deseas utilizar `jobspy` dentro de tus propios *scripts* en Python o desde la línea de comandos:
+
+```bash
+pip install -U python-jobspy
+
+```
+
+## Uso en Python
 
 ```python
 from jobspy import scrape_jobs
@@ -257,7 +288,7 @@ Naukri busca en India. `location` acepta una ciudad, por ejemplo `"Pune"`.
 
 ### HelloWork
 
-HelloWork busca en Francia. `location` acepta una ciudad, código postal o región francesa, por ejemplo `"Lyon"`. La mayoría de las vacantes están publicadas en francés, por que buscar con términos en francés arroja más resultados.
+HelloWork busca en Francia. `location` acepta una ciudad, código postal o región francesa, por ejemplo `"Lyon"`. La mayoría de las vacantes están publicadas en francés, por lo que buscar con términos en francés arroja más resultados.
 
 ### Bayt
 
