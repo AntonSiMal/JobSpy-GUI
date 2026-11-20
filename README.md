@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://github.com/speedyapply/JobSpy"><img src="https://github.com/user-attachments/assets/dcb90340-9469-4808-bc51-868e59a000e0" alt="JobSpy" width="320"></a>
+  <a href="https://github.com/AntonSiMal/JobSpy-GUI"><img src="https://github.com/user-attachments/assets/dcb90340-9469-4808-bc51-868e59a000e0" alt="JobSpy-GUI" width="320"></a>
 </h1>
 
 <p align="center">
@@ -11,14 +11,15 @@
   <a href="https://discord.gg/v7WdHnrNcN"><img src="https://img.shields.io/discord/1227411661221269565?label=discord&logo=discord&logoColor=white" alt="Discord"></a>
 </p>
 
-**JobSpy** es una librería de *scraping* de empleos que reúne ofertas de bolsas de trabajo populares en una sola herramienta:
+**JobSpy-GUI** (basado en [**JobSpy**](https://github.com/speedyapply/JobSpy)) es una librería y herramienta de *scraping* de empleos que reúne ofertas de bolsas de trabajo populares en un solo lugar, ahora acompañada de una interfaz gráfica en Streamlit y lanzadores listos para Linux y Windows:
 
 - Extrae vacantes de **LinkedIn**, **Indeed**, **ZipRecruiter**, **Glassdoor**, **SEEK** (con **JobStreet** y **Jobsdb**), **Naukri**, **HelloWork**, **Bayt** y **BDJobs** de forma concurrente
 - Consolida las ofertas laborales en un *DataFrame*
+- Incluye interfaz web local (`app.py`) y *scripts* de arranque automatizado (`Linux-run.sh` y `Windows-run.bat`)
 - Soporte de *proxies* para evitar bloqueos
 
 <p align="center">
-  <a href="https://github.com/speedyapply/JobSpy"><img src="https://github.com/cullenwatson/JobSpy/assets/78247585/ec7ef355-05f6-4fd3-8161-a817e31c5c57" alt="Demostración de JobSpy"></a>
+  <a href="https://github.com/AntonSiMal/JobSpy-GUI"><img src="https://github.com/cullenwatson/JobSpy/assets/78247585/ec7ef355-05f6-4fd3-8161-a817e31c5c57" alt="Demostración de JobSpy"></a>
 </p>
 
 ## Instalación
@@ -29,6 +30,31 @@ pip install -U python-jobspy
 ```
 
 *Se requiere Python versión >= [3.10*](https://www.python.org/downloads/release/python-3100/)
+
+## Interfaz gráfica y lanzadores (`app.py`, `Linux-run.sh`, `Windows-run.bat`)
+
+Este repositorio incluye una interfaz gráfica interactiva en **Streamlit** (`app.py`) junto con *scripts* de arranque que preparan el entorno virtual, instalan dependencias y lanzan la aplicación:
+
+* **`app.py`**: Interfaz web local para configurar portales, términos de búsqueda, ubicación, antigüedad, tipo de jornada, modo remoto, *proxies*, filtrar resultados, revisar errores/advertencias y descargar los datos en CSV.
+* **`Linux-run.sh`**: *Script* para Linux que verifica `python3`, crea/reutiliza `.venv`, instala o actualiza `python-jobspy`, `streamlit` y `openpyxl`, y ejecuta `app.py`.
+* **`Windows-run.bat`**: *Script* para Windows que localiza Python (`py -3` o `python`), crea/reutiliza `.venv`, instala o actualiza las dependencias y lanza `app.py`.
+
+### Ejecución en Linux
+
+```bash
+chmod +x Linux-run.sh
+./Linux-run.sh
+
+```
+
+### Ejecución en Windows
+
+Haz doble clic en `Windows-run.bat` o ejecútalo desde terminal:
+
+```bat
+Windows-run.bat
+
+```
 
 ## Uso
 
@@ -61,31 +87,6 @@ linkedin       Software Engineer - Early Career  Lockheed Martin   Sunnyvale, CA
 linkedin       Full-Stack Software Engineer      Rain              New York, NY, USA       fulltime  yearly    None        None        [https://www.linkedin.com/jobs/view/3696158877](https://www.linkedin.com/jobs/view/3696158877)      Rain’s mission is to create the fastest and ea...
 zip_recruiter  Software Engineer - New Grad      ZipRecruiter      Santa Monica, CA, USA   fulltime  yearly    130000      150000      [https://www.ziprecruiter.com/jobs/ziprecruiter](https://www.ziprecruiter.com/jobs/ziprecruiter)...  We offer a hybrid work environment. Most US-ba...
 zip_recruiter  Software Developer                TEKsystems        Phoenix, AZ, USA        fulltime  hourly    65          75          [https://www.ziprecruiter.com/jobs/teksystems-0](https://www.ziprecruiter.com/jobs/teksystems-0)...  Top Skills' Details• 6 years of Java developme...
-
-```
-
-## Interfaz gráfica y lanzadores (`app.py`, `Linux-run.sh`, `Windows-run.bat`)
-
-Este repositorio incluye una interfaz gráfica interactiva en **Streamlit** (`app.py`) junto con *scripts* de arranque que preparan el entorno virtual, instalan dependencias y lanzan la aplicación:
-
-* **`app.py`**: Interfaz web local para configurar portales, términos de búsqueda, ubicación, antigüedad, tipo de jornada, modo remoto, *proxies*, filtrar resultados, revisar errores/advertencias y descargar los datos en CSV.
-* **`Linux-run.sh`**: *Script* para Linux que verifica `python3`, crea/reutiliza `.venv`, instala o actualiza `python-jobspy`, `streamlit` y `openpyxl`, y ejecuta `app.py`.
-* **`Windows-run.bat`**: *Script* para Windows que localiza Python (`py -3` o `python`), crea/reutiliza `.venv`, instala o actualiza las dependencias y lanza `app.py`.
-
-### Ejecución en Linux
-
-```bash
-chmod +x Linux-run.sh
-./Linux-run.sh
-
-```
-
-### Ejecución en Windows
-
-Haz doble clic en `Windows-run.bat` o ejecútalo desde terminal:
-
-```bat
-Windows-run.bat
 
 ```
 
@@ -181,13 +182,13 @@ Opcionales
 │
 ├── linkedin_company_ids (list[int]): 
 |    busca vacantes de LinkedIn para IDs de empresa específicos
-|
+│
 ├── country_indeed (str): 
 |    elige el sitio del país en Indeed, Glassdoor y SEEK (por defecto es usa; ver nombres abajo)
-|
+│
 ├── enforce_annual_salary (bool): 
 |    convierte los salarios a monto anual
-|
+│
 ├── ca_cert (str)
 |    ruta al archivo de certificado CA para proxies
 
@@ -256,7 +257,7 @@ Naukri busca en India. `location` acepta una ciudad, por ejemplo `"Pune"`.
 
 ### HelloWork
 
-HelloWork busca en Francia. `location` acepta una ciudad, código postal o región francesa, por ejemplo `"Lyon"`. La mayoría de las vacantes están publicadas en francés, por lo que buscar con términos en francés arroja más resultados.
+HelloWork busca en Francia. `location` acepta una ciudad, código postal o región francesa, por ejemplo `"Lyon"`. La mayoría de las vacantes están publicadas en francés, por que buscar con términos en francés arroja más resultados.
 
 ### Bayt
 
